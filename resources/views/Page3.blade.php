@@ -1,6 +1,4 @@
 @extends('layouts.default_layout')
 @section('content')
-<h3>O valor {{$value}}</h3>
+    <h1>Page 3: {{$value}}</h1>
 @endsection
-
-

@@ -11,4 +11,7 @@ Route::get('/Sobre', function () {
     echo "É sobre isso";
 });
 
-Route::get('/Main/{value}', [MainController::class, 'index']);
+Route::get('/main/{value}', [MainController::class, 'index']);
+Route::get('/page2/{value}', [MainController::class, 'page2']);
+Route::get('/page3/{value}', [MainController::class, 'page3']);
+
