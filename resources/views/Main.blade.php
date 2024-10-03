@@ -9,6 +9,8 @@
 <body>
 
     <h1>BEM VINDOOO!!</h1>
+    <hr>
+    <h3>O valor {{$valuegi}}</h3>
 
 </body>
 </html>
