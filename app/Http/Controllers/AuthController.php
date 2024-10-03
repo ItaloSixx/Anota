@@ -12,9 +12,19 @@ class AuthController extends Controller
     public function loginSubmit(Request $request){
         //validation form
         $request->validate(
+            //regras
             [
-                'text_username' => 'required',
-                'text_password' => 'required'
+                'text_username' => 'required|email',
+                'text_password' => 'required|min:8|max:22'
+            ],
+            //erros
+            [
+                'text_username.required' => 'Necessário preencher o email',
+                'text_username.email' => 'Precisa ser um email válido',
+                'text_password.required' => 'Necessário preencher a senha',
+                'text_password.min' => 'Minimo de :min caracteres',
+                'text_password.max' => 'Maximo de :max caracteres'
+
             ]
         );
 
