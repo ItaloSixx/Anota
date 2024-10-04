@@ -62,10 +62,6 @@ class AuthController extends Controller
             ]
         ]);
 
-
-
-
-
         //get users database
         //$userModel = new User();
         //$users = $userModel->all()->toArray();
@@ -76,6 +72,8 @@ class AuthController extends Controller
     }
 
     public function logout(){
-        echo 'logout';
+    //logout
+    session()->forget('user');
+    return redirect()->to('/login');
     }
 }
