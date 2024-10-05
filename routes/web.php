@@ -15,11 +15,23 @@ Route::middleware([CheckIsNotLogin::class])->group(function(){
 
 //userDontLogged
 Route::middleware([CheckIsLogin::class])->group(function(){
+    //home route
     Route::get('/', [MainController::class, 'index'])->name('home');
-    Route::get('/newNote', [MainController::class, 'newNote'])->name('new');
-    Route::get('/editNote/{id}', [MainController::class, 'editNote'])->name('edit');
-    Route::get('/deleteNote/{id}', [MainController::class, 'deleteNote'])->name('delete');
 
+    //new note
+    Route::get('/newNote', [MainController::class, 'newNote'])->name('new');
+    Route::post('/newNoteSubmit', [MainController::class, 'newNoteSubmit'])->name('newNoteSubmit');
+
+    //edit note
+    Route::get('/editNote/{id}', [MainController::class, 'editNote'])->name('edit');
+    Route::post('editNoteSubmit', [MainController::class, 'editNoteSubmit'])->name('editNoteSubmit');
+
+    //delete note
+    Route::get('/deleteNote/{id}', [MainController::class, 'deleteNote'])->name('delete');
+    Route::get('/deleteNoteConfirm/{id}', [MainController::class, 'deleteNoteConfirm'])->name('deleteConfirm');
+
+
+    //logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
