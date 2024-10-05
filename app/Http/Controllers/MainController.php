@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index(){
-        echo 'Entrei na index';
+        //load notes
+
+
+        return view('home');
     }
 
     public function newNote(){

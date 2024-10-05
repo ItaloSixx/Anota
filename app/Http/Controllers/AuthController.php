@@ -12,15 +12,17 @@ class AuthController extends Controller
     public function login(){
         return view('login');
     }
+
+    //processes the login form submission
     public function loginSubmit(Request $request){
         //validation form
         $request->validate(
-            //regras
+            //rules
             [
                 'text_username' => 'required|email',
                 'text_password' => 'required|min:8|max:22'
             ],
-            //erros
+            //errors
             [
                 'text_username.required' => 'Necessário preencher o email',
                 'text_username.email' => 'Precisa ser um email válido',
@@ -30,16 +32,20 @@ class AuthController extends Controller
 
             ]
         );
-
         $username = $request->input('text_username');
         $password = $request->input('text_password');
 
+        //queries the database for a user with the given username
         $user = User::where('username', $username)
                         ->where('deleted_at', NULL)
                         ->first();
 
+        //if user is not found, redirects back with an error message
         if(!$user){
-
+            return redirect()
+                    ->back()
+                    ->withInput()
+                    ->with('loginError', 'Usuário não encontrado');
         }
 
         //passoword check
@@ -49,9 +55,9 @@ class AuthController extends Controller
                     ->withInput()
                     ->with('loginError', 'Email ou senha incorretos');
         }else{
+            //updates the last login timestamp
             $user->last_login = date('Y-m-d H:i:s');
             $user->save;
-            echo 'LOGIN COM SUCESSO';
         }
 
         //login user
@@ -62,10 +68,13 @@ class AuthController extends Controller
             ]
         ]);
 
+        return redirect()->to('/');
+
+
+
         //get users database
         //$userModel = new User();
         //$users = $userModel->all()->toArray();
-
         //echo '<pre>';
         //print_r($users);
 
