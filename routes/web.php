@@ -7,7 +7,7 @@ use App\Http\Middleware\CheckIsNotLogin;
 use Illuminate\Support\Facades\Route;
 
 //userLogged
-Route::middleware([CheckIsNotLogin::class])->group(function(){
+Route::middleware([CheckIsNotLogin::class,])->group(function(){
     //auth routes
     Route::get('/login', [AuthController::class, 'login']);
     Route::post('/loginSubmit', [AuthController::class, 'loginsubmit']);

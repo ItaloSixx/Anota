@@ -20,6 +20,7 @@ class CheckIsLogin
             return redirect('/login');
         }else{
             return $next($request);
-        }
+
+     }
     }
 }
